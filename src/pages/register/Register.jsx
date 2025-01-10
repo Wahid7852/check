@@ -1,23 +1,15 @@
-import { useRef } from 'react';
-import './register.css';
-
+import React from 'react';
+import styles from './Register.module.css';
 
 // function randomText(){
-  
-//     let text = "अआइईउऊएऐओऔअंअःऋॠकखगघङचछजझञटठडढणतथदधनपफबभमयरलवशषसहक्षत्रज्ञ";
-    
+//     let text = "अआइईउऊएऐओऔअंअःऋॠकखगघङचछजझञटठडढणतथदधनपफबभमयरलवशषसहक्षत्रज्ञ";    
 //     const letter = text[Math.floor(Math.random() * text.length)];
-    
 //     return letter;
 //   }
-  
-  
+
 //   //hacking animation
 //   function rain(){
-    
-    
 //     let e = document.createElement('div');
-    
 //     let left = Math.floor(Math.random() * 100);
 //     let size = Math.random() * 1.8;
 //     let duration = Math.random() * 2;
@@ -29,76 +21,55 @@ import './register.css';
 //     e.style.left = left + '%';
 //     e.style.fontSize = 0.3 + size + 'em';
 //     e.style.animationDuration = 1 + duration  + 'px';
-    
+   
 //       //remove
 //     setTimeout(function(){
 //       document.body.removeChild(e)
 //     },4050)
-    
-//   }
-  
-  
-  
+//   }  
 //   setInterval(function(){
 //     rain()
 //   },20);
   
-  
-  
-  
-  
-
-const Register = () =>{
-
-   
-      
-      
-    return(
+const Register = () => {
+    return (
         <div>
-            <div className="container">
-
-                <form className='form-container'>
+            <div className={styles.container}>
+                <form className={styles.formContainer}>
                     <div>
-                    <label for = "username">Username: </label>
-                    <input type="text" id="username" name="username" ></input>
+                        <label htmlFor="username">Username: </label>
+                        <input type="text" id="username" name="username" />
                     </div>
-
                     <div>
-                    <label for = "email">Email: </label>
-                    <input type="email" id="email" name="email" ></input>
+                        <label htmlFor="email">Email: </label>
+                        <input type="email" id="email" name="email" />
                     </div>
-
                     <div>
-                    <label for = "password">Password: </label>
-                    <input type="password" id="password" name="password" ></input>
+                        <label htmlFor="password">Password: </label>
+                        <input type="password" id="password" name="password" />
                     </div>
-
                     <div>
-                    <label for = "age" className='specialLabel'>Age: </label>
-                    <input type="number" id="age" name="age" className='specialInput' ></input>
+                        <label htmlFor="age" className={styles.specialLabel}>Age: </label>
+                        <input type="number" id="age" name="age" className={styles.specialInput} />
                     </div>
-
                     <div>
-                    <label for = "gender">Gender: </label>
-
-                    <div className='gender'>
-                    <input type="radio" id="gender" name="gender" ></input>
-                    <span className='male'>Male</span>
-                    <input type="radio" id="gender" name="gender" ></input>  
-                    <span>Female</span>
+                        <label htmlFor="gender">Gender: </label>
+                        <div className={styles.gender}>
+                            <input type="radio" id="male" name="gender" />
+                            <span className={styles.male}>Male</span>
+                            <input type="radio" id="female" name="gender" />
+                            <span>Female</span>
+                        </div>
                     </div>
-                    </div>
-
-                    <button className='registerButton'>Register</button>     
+                    <button className={styles.registerButton}>Register</button>     
                 </form>
             </div>
-
-            <div className='secret'>
-                <input type='text' className='secretInput'></input>
+            <div className={styles.secret}>
+                <input type='text' className={styles.secretInput} />
             </div>
         </div>
     )
 }
 
-
 export default Register;
+

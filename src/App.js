@@ -26,23 +26,23 @@ const App = () =>  {
      <div className='maindiv'>
 
 
-      {/* <Header/>
-      <SlidingButton/>
+      <Header/>
+      {/* <SlidingButton/> */}
       <Hello/>
       <Features/>
-      <Inputbot/> */}
+      {/* <Inputbot/> */}
 
-      {/* <Register/> */}
-      {/* <Login /> */}
+      <Register/>
+      <Login />
+      <Fitbit/>
 
       
 
       
-      {/* <Login/>
-      // <Homepage/> 
+      {/* // <Homepage/>  */}
 
       {/* <Login></Login> */}
-      {/* <Card title="Steps count"/> */}
+      {/* <Card title="Steps count"/>
 
       <Fitbit/>
 

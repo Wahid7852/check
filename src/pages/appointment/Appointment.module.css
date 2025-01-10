@@ -1,25 +1,23 @@
-.appointment{
+.appointment {
     color: white;
-    display:inline-flex;
+    display: inline-flex;
     flex-direction: column;
-    
     margin-top: 10px;
-    
 }
 
-.fields{
+.fields {
     display: inline-block;
     margin-right: 20px;
     font-family: 'Times New Roman', Times, serif;
     font-size: 20px;
 }
 
-.timeslot{
+.timeslot {
     border-radius: 25px;
     padding: 10px;
 }
 
-.dropdown-btn {
+.dropdownBtn {
     background-color: #3498db;
     color: white;
     padding: 10px 20px;
@@ -29,11 +27,11 @@
     border-radius: 5px;
 }
 
-.dropdown-btn:hover {
+.dropdownBtn:hover {
     background-color: #2980b9;
 }
 
-.dropdown-content {
+.dropdownContent {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
@@ -43,30 +41,31 @@
     border-radius: 5px;
 }
 
-.dropdown-content a {
+.dropdownContent a {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
 }
 
-.dropdown-content a:hover {
+.dropdownContent a:hover {
     background-color: #ddd;
 }
 
-.dropdown-container:hover .dropdown-content {
+.dropdownContainer:hover .dropdownContent {
     display: block;
 }
-.dropdown-container {
+
+.dropdownContainer {
     position: relative;
     display: inline-block;
 }
 
-.doctorbox{
+.doctorBox {
     display: inline-block;
 }
 
-.doctor{
+.doctor {
     border-radius: 25px;
-    padding: 10px ;
+    padding: 10px;
 }

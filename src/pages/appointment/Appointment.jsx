@@ -1,43 +1,38 @@
-import './Appointment.css';
+import React, { useState } from 'react';
+import styles from './Appointment.module.css';
 import Button from '../../component/button/Button';
-import { useState } from 'react';
-
-
 
 const Appointment = () => {
+    const [doctor, setDoctor] = useState('');
 
-    let [doctor , setDoctor] = useState('');
-
-    const handleChange = (e) =>{
-        setDoctor(e.target.name);
-        console.log(doctor);
+    const handleChange = (e) => {
+        setDoctor(e.target.getAttribute('data-name') || '');
     }
 
-    return(
-        <div className="appointment">
-
-            <div className='doctorbox'>
-                <h1 className='fields'>Doctor: </h1>
-                <input className="doctor" type="text" value={doctor}/>   
-                <div class="dropdown-container">
-               <button class="dropdown-btn">Select: </button>
-                <div class="dropdown-content">
-                 <a href="#" onClick={handleChange} name="divyasai">Option 1</a>
-                 <a href="#" onClick="">Option 2</a>
-                 <a href="#" onclick="">Option 3</a>
+    return (
+        <div className={styles.appointment}>
+            <div className={styles.doctorBox}>
+                <h1 className={styles.fields}>Doctor: </h1>
+                <input className={styles.doctor} type="text" value={doctor} readOnly />   
+                <div className={styles.dropdownContainer}>
+                    <button className={styles.dropdownBtn}>Select: </button>
+                    <div className={styles.dropdownContent}>
+                        <a href="#" onClick={handleChange} data-name="divyasai">Option 1</a>
+                        <a href="#" onClick={handleChange} data-name="option2">Option 2</a>
+                        <a href="#" onClick={handleChange} data-name="option3">Option 3</a>
+                    </div>
                 </div>
             </div>
-            </div>
-
 
             <div>
-                <h1 className='fields'>Timeslot: </h1>
-                <input className="timeslot" type="datetime-local" />
+                <h1 className={styles.fields}>Timeslot: </h1>
+                <input className={styles.timeslot} type="datetime-local" />
             </div>
 
             <Button text="show nearby doctors"/>
         </div>
-        );
+    );
 }
 
 export default Appointment;
+
