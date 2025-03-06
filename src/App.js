@@ -8,7 +8,6 @@ import { AuthProvider } from "./context/AuthContext";
 import LandingPage from "./pages/homepage/LandingPage";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
-import ProtectedRoute from "./component/ProtectedRoute/ProtectedRoute";
 import Fitbit from "./pages/fitbit/Fitbit";
 import Appointment from "./pages/appointment/Appointment";
 import Chatbot from "./pages/chatbot/Chatbot";
@@ -78,5 +77,3 @@ const App = () => {
 };
 
 export default App;
-
-

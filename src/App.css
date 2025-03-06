@@ -2,9 +2,7 @@
   text-align: center;
 }
 
-
 body{
-  
   min-height: 100vh;
   padding: 0;
   margin: 0;
@@ -12,9 +10,6 @@ body{
 }
 
 .maindiv{
-  /* display: flex;
-  justify-content: center;
-  flex-direction: column; */
   padding: 0;
   margin: 0;
   width: 100vw;

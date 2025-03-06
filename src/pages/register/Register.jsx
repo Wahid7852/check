@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./register.css";
-import facebookLogo from "../../pages/login/facebook-logo.png";
-import googleLogo from "../../pages/login/google-logo.png";
-import twitterLogo from "../../pages/login/twitter-logo.png";
+import facebookLogo from "./social-media-icons/facebook-logo.png";
+import googleLogo from "./social-media-icons/google-logo.png";
+import twitterLogo from "./social-media-icons/twitter-logo.png";
 
 const Register = () => {
   const navigate = useNavigate();

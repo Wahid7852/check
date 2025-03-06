@@ -48,33 +48,3 @@ export const AuthProvider = ({ children }) => {
 };
 
 export const useAuth = () => useContext(AuthContext);
-
-
-// // src/context/AuthContext.jsx
-// import React, { createContext, useContext, useState, useEffect } from "react";
-
-// const AuthContext = createContext();
-
-// export const AuthProvider = ({ children }) => {
-//   const [user, setUser] = useState(() => JSON.parse(localStorage.getItem("user")) || null);
-//   const [role, setRole] = useState(() => localStorage.getItem("role") || null);
-
-//   const login = (userInfo, userRole) => {
-//     setUser(userInfo);
-//     setRole(userRole);
-
-//     localStorage.setItem("user", JSON.stringify(userInfo));
-//     localStorage.setItem("role", userRole);
-//   };
-
-//   const logout = () => {
-//     setUser(null);
-//     setRole(null);
-//     localStorage.removeItem("user");
-//     localStorage.removeItem("role");
-//   };
-
-//   return <AuthContext.Provider value={{ user, role, login, logout }}>{children}</AuthContext.Provider>;
-// };
-
-// export const useAuth = () => useContext(AuthContext);
