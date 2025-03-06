@@ -28,7 +28,6 @@ const Payment = () => {
   const [verificationMessage, setVerificationMessage] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
   const [paymentConfirmed, setPaymentConfirmed] = useState(false);
-  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     // Reset bank verification status when payment method changes
@@ -36,9 +35,7 @@ const Payment = () => {
     setVerificationMessage("");
   }, [selectedMethod]);
 
-  // Validators updated with limits:
-  // Account number must be exactly 16 digits.
-  // IFSC code must be exactly 11 characters (e.g., HDFC0001234).
+  // Validators for each field
   const validators = {
     name: (val) => (!val.trim() ? "Name is required" : ""),
     email: (val) => {
@@ -46,7 +43,8 @@ const Payment = () => {
       return !regex.test(val) ? "Invalid email format" : "";
     },
     mobile: (val) => (!/^\d{10}$/.test(val) ? "Mobile number must be 10 digits" : ""),
-    accountNumber: (val) => (!/^\d{16}$/.test(val) ? "Account number must be exactly 16 digits" : ""),
+    accountNumber: (val) =>
+      !/^\d{16}$/.test(val) ? "Account number must be exactly 16 digits" : "",
     ifscCode: (val) =>
       !/^[A-Z]{4}0[A-Z0-9]{6}$/.test(val)
         ? "Invalid IFSC code. It should be 11 characters (e.g., HDFC0001234)"
@@ -57,44 +55,42 @@ const Payment = () => {
     panNumber: (val) => (!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(val) ? "Invalid PAN format" : ""),
   };
 
-  // Pure validation functions (without updating state)
+  // Separate function to validate user details
   const isUserDetailsValid = () => {
     const { name, email, mobile } = userDetails;
-    return name.trim() && validators.email(email) === "" && /^\d{10}$/.test(mobile);
+    return name.trim() !== "" && validators.email(email) === "" && /^\d{10}$/.test(mobile);
   };
 
-const isPaymentValid = () => {
-  if (!userDetails.name || validators.email(userDetails.email) || !/^\d{10}$/.test(userDetails.mobile)) {
-    return false;
-  }
+  // Overall payment validation now uses isUserDetailsValid
+  const isPaymentValid = () => {
+    if (!isUserDetailsValid()) return false;
 
-  switch (selectedMethod) {
-    case "card":
-      return (
-        cardDetails.cardNumber.length === 16 &&
-        validators.expiry(cardDetails.expiry) === "" &&
-        /^\d{3}$/.test(cardDetails.cvv) &&
-        cardDetails.nameOnCard.trim() !== ""
-      );
+    switch (selectedMethod) {
+      case "card":
+        return (
+          cardDetails.cardNumber.length === 16 &&
+          validators.expiry(cardDetails.expiry) === "" &&
+          /^\d{3}$/.test(cardDetails.cvv) &&
+          cardDetails.nameOnCard.trim() !== ""
+        );
 
-    case "bank":
-      return verificationStatus === "success";
+      case "bank":
+        return verificationStatus === "success";
 
-    case "upi":
-      return /^[a-zA-Z0-9.\-_]{2,256}@[a-zA-Z]{2,64}$/.test(upiId);
+      case "upi":
+        return /^[a-zA-Z0-9.\-_]{2,256}@[a-zA-Z]{2,64}$/.test(upiId);
 
-    case "netbanking":
-      return (
-        netbankingDetails.selectedBank.trim() !== "" &&
-        netbankingDetails.customerId.trim() !== "" &&
-        validators.panNumber(netbankingDetails.panNumber) === "" // ✅ FIX: Correctly check PAN validation
-      );
+      case "netbanking":
+        return (
+          netbankingDetails.selectedBank.trim() !== "" &&
+          netbankingDetails.customerId.trim() !== "" &&
+          validators.panNumber(netbankingDetails.panNumber) === ""
+        );
 
-    default:
-      return false;
-  }
-};
-
+      default:
+        return false;
+    }
+  };
 
   const verifyBankAccount = () => {
     if (!bankDetails.accountNumber || !bankDetails.ifscCode || !bankDetails.accountName || !bankDetails.bankName) {
@@ -107,6 +103,7 @@ const isPaymentValid = () => {
     setVerificationMessage("Verifying your bank account...");
 
     setTimeout(() => {
+      // For testing, if account number is "1234567890", bypass strict check
       if (bankDetails.accountNumber === "1234567890") {
         setVerificationStatus("success");
         setVerificationMessage("Test bank account verified successfully!");
@@ -125,7 +122,6 @@ const isPaymentValid = () => {
       }
     }, 1500);
   };
-
 
   const handlePayment = (e) => {
     e.preventDefault();
@@ -407,7 +403,7 @@ const isPaymentValid = () => {
           )}
         </section>
 
-        <button type="submit" className={`pay-now ${isProcessing ? "processing" : ""}`}>
+        <button type="submit" className={`pay-now ${isProcessing ? "processing" : ""}`} disabled={isProcessing || !isPaymentValid()}>
           {isProcessing ? <div className="loader"></div> : "Proceed to Pay"}
         </button>
       </form>

@@ -1,6 +1,6 @@
 {
-    "name": "My React App",
-    "short_name": "ReactApp",
+    "name": "Healthcare Chatbot",
+    "short_name": "chatbot",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
