@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import AnimatedBackground from '../../component/AnimatedBackground/AnimatedBackground';
 import './chatbot.css';
 import SparkleOverlay from '../../component/Sparkle/SparkleOverlay';
-import Sidebar from '../../component/Sidebar/Sidebar';
-import Send from '../../component/sendbutton/Send';
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([]);

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "./fitbit.css";
 import Card from "../../component/card/Card";
-import Button from "../../component/button/Button";
 import { jsPDF } from "jspdf";
 
 const Fitbit = () => {
