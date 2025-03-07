@@ -1,3 +1,4 @@
+import Header from "../../component/header/Header";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import jsPDF from "jspdf";
@@ -39,6 +40,7 @@ const Report = () => {
       <header className={styles.header}>
         <h1 className={styles.title}>Healthcare Chatbot Reports</h1>
       </header>
+      <Header />
       <main className={styles.main}>
         <div className={styles.reportCard}>
           <h2 className={styles.cardTitle}>User Report Summary</h2>

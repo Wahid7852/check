@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import AnimatedBackground from '../component/AnimatedBackground/AnimatedBackground';
+import './SymptomAnalysis.css'; // Import a new CSS file for styling
 
 const symptomMapping = {
   headache: "Possible causes: Migraine, Stress, Dehydration, Sinus Infection.",
@@ -57,26 +59,28 @@ const SymptomAnalysis = () => {
   };
 
   return (
-    <div style={{ color: "white", backgroundColor: "black", padding: "20px" }}>
-      <h2>Symptom Analysis</h2>
-      <textarea
-        placeholder="Enter symptoms (comma-separated)..."
-        value={symptoms}
-        onChange={(e) => setSymptoms(e.target.value)}
-        style={{ width: "300px", height: "80px" }}
-      />
-      <br />
-      <button onClick={handleAnalyze} style={{ marginTop: "10px" }}>
-        Analyze
-      </button>
-      {analysis && (
-        <pre style={{ whiteSpace: "pre-wrap", marginTop: "10px" }}>{analysis}</pre>
-      )}
-      <br />
-      <a href="/" style={{ textDecoration: "none", color: "blue" }}>
-        Go to Homepage
-      </a>
-    </div>
+    <AnimatedBackground>
+      <div className="symptom-analysis-container">
+        <h2>Symptom Analysis</h2>
+        <textarea
+          placeholder="Enter symptoms (comma-separated)..."
+          value={symptoms}
+          onChange={(e) => setSymptoms(e.target.value)}
+          className="symptom-input"
+        />
+        <br />
+        <button onClick={handleAnalyze} className="analyze-button">
+          Analyze
+        </button>
+        {analysis && (
+          <pre className="analysis-result">{analysis}</pre>
+        )}
+        <br />
+        <a href="/" className="home-link">
+          Go to Homepage
+        </a>
+      </div>
+    </AnimatedBackground>
   );
 };
 

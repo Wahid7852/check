@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate, Link } from "react-router-dom";
 import "./fitbit.css";
 import Card from "../../component/card/Card";
 import { jsPDF } from "jspdf";
+import AnimatedBackground from '../../component/AnimatedBackground/AnimatedBackground'; // Import AnimatedBackground
+import Header from "../../component/header/Header";
 
 const Fitbit = () => {
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate();
 
   const [stats, setStats] = useState({
     steps: 0,
@@ -37,31 +39,34 @@ const Fitbit = () => {
   };
 
   return (
-    <div className="fitbit">
-      <h1 className="fitbit-title">Your Fitbit Statistics</h1>
-      <div className="gridcontainer">
-        <div className="gridItem">
-          <Card title="Steps Count" value={`${stats.steps} steps`} />
+    <AnimatedBackground>
+      <div className="fitbit">
+      <Header />
+        <h1 className="fitbit-title">Your Fitbit Statistics</h1>
+        <div className="gridcontainer">
+          <div className="gridItem">
+            <Card title="Steps Count" value={`${stats.steps} steps`} />
+          </div>
+          <div className="gridItem">
+            <Card title="Heart Rate" value={`${stats.heartRate} bpm`} />
+          </div>
+          <div className="gridItem">
+            <Card title="Calories Burned" value={`${stats.calories} kcal`} />
+          </div>
+          <div className="gridItem">
+            <Card title="Sleep Duration" value={`${stats.sleep} hours`} />
+          </div>
         </div>
-        <div className="gridItem">
-          <Card title="Heart Rate" value={`${stats.heartRate} bpm`} />
-        </div>
-        <div className="gridItem">
-          <Card title="Calories Burned" value={`${stats.calories} kcal`} />
-        </div>
-        <div className="gridItem">
-          <Card title="Sleep Duration" value={`${stats.sleep} hours`} />
+        <div className="button-container">
+          <button className="button" onClick={() => navigate("/report", { state: stats })}>
+            View Report
+          </button>
+          <button className="button" onClick={downloadReport}>
+            Download Report
+          </button>
         </div>
       </div>
-      <div className="button-container">
-        <button className="button" onClick={() => navigate("/report", { state: stats })}
->         View Report
-        </button>
-        <button className="button" onClick={downloadReport}>
-          Download Report
-        </button>
-      </div>
-    </div>
+    </AnimatedBackground>
   );
 };
 

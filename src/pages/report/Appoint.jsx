@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import Header from "../../component/header/Header";
 
 const Appointments = () => {
   const navigate = useNavigate();
@@ -88,6 +89,7 @@ const Appointments = () => {
       <header style={styles.header}>
         <h1 style={styles.title}>Your Appointments</h1>
       </header>
+      <Header />
       <main style={styles.main}>
         {selectedAppointment ? (
           // 📌 View Details Interface

@@ -1,6 +1,7 @@
 import styles from './Appointment.module.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // For navigation
+import Header from "../../component/header/Header";
 
 const doctorDistances = {
     "Dr. Deepak Patil": "2 km away",
@@ -30,6 +31,7 @@ const Appointment = () => {
 
     return (
         <div className={styles.appointment}>
+        <Header />
             <h1 className={styles.title}>Book an Appointment</h1>
             <div className={styles.doctorbox}>
                 <h1 className={styles.fields}>Doctor: </h1>
@@ -37,9 +39,13 @@ const Appointment = () => {
                 <div className={styles.dropdownContainer}>
                     <button className={styles.dropdownBtn}>Select: </button>
                     <div className={styles.dropdownContent}>
+                        { /* eslint-disable-next-line */ }
                         <a href="#" onClick={handleChange}>Dr. Deepak Patil</a>
+                        { /* eslint-disable-next-line */ }
                         <a href="#" onClick={handleChange}>Dr. Tamboli</a>
+                        { /* eslint-disable-next-line */ }
                         <a href="#" onClick={handleChange}>Dr. vaze</a>
+                        { /* eslint-disable-next-line */ }
                         <a href="#" onClick={handleChange}>Dr. Joshi</a>
                     </div>
                 </div>

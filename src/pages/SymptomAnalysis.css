@@ -1,0 +1,73 @@
+.symptom-analysis-container {
+    color: white;
+    text-align: center;
+    font-family: "Arial", sans-serif;
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(233, 225, 225, 0.323);
+    backdrop-filter: blur(10px);
+}
+
+.symptom-analysis-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.symptom-input {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 16px;
+    outline: none;
+    resize: none;
+}
+
+.symptom-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.analyze-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #3298bd;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+}
+
+.analyze-button:hover {
+    background: #1201185e;
+}
+
+.analysis-result {
+    white-space: pre-wrap;
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    text-align: left;
+    color: white;
+}
+
+.home-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #3298bd;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.home-link:hover {
+    color: #1201185e;
+}

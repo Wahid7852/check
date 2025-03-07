@@ -1,12 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AnimatedBackground from '../../component/AnimatedBackground/AnimatedBackground';
 import './chatbot.css';
 import SparkleOverlay from '../../component/Sparkle/SparkleOverlay';
+import botImage from '../../assets/bot-image.png'; // Import bot image
+import Header from "../../component/header/Header";
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isNavbarVisible, setIsNavbarVisible] = useState(false); // Navbar visibility state
+
+  // Pre-generated greeting message
+  useEffect(() => {
+    const greetingMessage = {
+      sender: 'bot',
+      text: "Hello! I'm your HealthBot. How can I assist you today?",
+    };
+    setMessages([greetingMessage]);
+  }, []);
 
   const handleSend = async () => {
     if (input.trim() === '') return;
@@ -79,9 +90,11 @@ const Chatbot = () => {
     }
   };
 
-  // Toggle sidebar visibility
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
+  // Handle Enter key press
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSend();
+    }
   };
 
   // Start a new chat (clear history)
@@ -91,22 +104,7 @@ const Chatbot = () => {
 
   return (
     <AnimatedBackground>
-      <div className={`sidebar ${isSidebarOpen ? 'open' : 'closed'}`}>
-        <div className="sidebar-header">
-          <h2>Chat History</h2>
-          <button className="close-sidebar" onClick={toggleSidebar}>×</button>
-        </div>
-        <button className="new-chat-btn-sidebar" onClick={startNewChat}>+ New Chat</button>
-        <div className="history-list">
-          {messages.map((message, index) => (
-            <div key={index} className={`history-item ${message.sender}`}>
-              <strong>{message.sender === 'user' ? 'You' : 'Bot'}:</strong> {message.text}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <button className="toggle-sidebar" onClick={toggleSidebar}>☰</button>
+    <Header />
 
       <div className="chatbot-container">
         <div className="chat-window">
@@ -116,8 +114,15 @@ const Chatbot = () => {
               <div
                 key={index}
                 className={`message ${message.sender}`}
-                dangerouslySetInnerHTML={{ __html: message.text }}
-              ></div>
+              >
+                {message.sender === 'bot' && (
+                  <img src={botImage} alt="Bot" className="bot-image" />
+                )}
+                <div
+                  className="message-content"
+                  dangerouslySetInnerHTML={{ __html: message.text }}
+                ></div>
+              </div>
             ))}
           </div>
           <div className="input-area">
@@ -125,6 +130,7 @@ const Chatbot = () => {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
+              onKeyPress={handleKeyPress}
               placeholder="Type your message..."
             />
             <button onClick={handleSend}>Send</button>

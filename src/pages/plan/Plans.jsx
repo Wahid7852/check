@@ -1,12 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./plans.css";
+import Header from "../../component/header/Header";
 
 const Plans = () => {
   const navigate = useNavigate();
 
   return (
     <div className="plans-container">
+    <Header />
       <h1 className="plans-title">Choose Your Plan</h1>
       <p className="plans-subtitle">Find the best plan that fits your needs</p>
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Header from "../../component/header/Header";
 
 const HealthStatistics = () => {
   const navigate = useNavigate();
@@ -46,6 +47,7 @@ const HealthStatistics = () => {
       <header style={styles.header}>
         <h1 style={styles.title}>Health Statistics</h1>
       </header>
+      <Header />
       <main style={styles.main}>
         <div style={styles.statCard}>
           <h3>Heart Rate</h3>

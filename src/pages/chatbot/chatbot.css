@@ -1,7 +1,64 @@
+/* Navbar styles */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: -100px;
+  /* Initially hidden */
+  width: 100px;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  transition: left 0.3s ease-in-out;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar.visible {
+  left: 0;
+  /* Show navbar when visible */
+}
+
+.new-chat-btn {
+  padding: 10px;
+  background-color: #3298bd;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.new-chat-btn:hover {
+  background-color: #1201185e;
+}
+
+/* Chatbot container */
+.chatbot-container {
+  position: relative;
+  z-index: 1;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  padding-top: 2%;
+  font-family: "Arial", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  backdrop-filter: blur(10px);
+  /* Blurry background */
+  background: rgba(255, 255, 255, 0.1);
+  /* Semi-transparent background */
+  border-radius: 10px;
+}
+
 .chat-window {
-  width: 400px;
+  width: 600px;
   max-width: 90%;
-  background: transparent;
+  background: rgba(0, 0, 0, 0.5);
+  /* Semi-transparent background */
   border-radius: 10px;
   box-shadow: 0 4px 20px rgba(233, 225, 225, 0.323);
   display: flex;
@@ -12,29 +69,11 @@
 .messages {
   flex: 1;
   padding: 20px;
-  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  max-height: 70vh; /* Set a maximum height for the chat messages area */
+  max-height: 70vh;
 }
-
-.messages::-webkit-scrollbar {
-  width: 8px; /* Adjust width if needed */
-}
-
-.messages::-webkit-scrollbar-thumb {
-  background-color: transparent; /* Make the scrollbar thumb transparent */
-}
-
-.messages::-webkit-scrollbar-track {
-  background-color: transparent; /* Make the scrollbar track transparent */
-}
-
-.messages {
-  scrollbar-width: thin; /* For Firefox - makes the scrollbar thinner */
-  scrollbar-color: transparent transparent; /* Thumb and track colors */
-}
-
 
 .message {
   margin-bottom: 15px;
@@ -42,6 +81,8 @@
   border-radius: 20px;
   max-width: 80%;
   animation: fadeIn 0.3s ease-in-out;
+  display: flex;
+  align-items: flex-start;
 }
 
 .message.user {
@@ -51,26 +92,27 @@
 
 .message.bot {
   align-self: flex-start;
-  /* background: transparent; */
-  text-align: left; /* Ensure text aligns to the left */
-  white-space: pre-wrap; /* Preserve line breaks but prevent extra spaces */
   background: #ab56ff18;
 }
 
-.message.bot p {
-  margin: 0; /* Remove any default margin */
-  padding-left: 0; /* Ensure no extra padding */
+.bot-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
+.message-content {
+  flex: 1;
+  color: white;
+  /* Ensure text is visible */
+}
 
 .input-area {
   display: flex;
   padding: 15px;
   border-top: 1px solid #eee;
-  /* background: rgba(0, 0, 0, 0.5); */
   background: transparent;
-  /* background: red; */
-  /* height: 60px; */
 }
 
 input {
@@ -82,6 +124,8 @@ input {
   font-size: 16px;
   transition: border-color 0.2s;
   background: transparent;
+  color: white;
+  /* Ensure input text is visible */
 }
 
 input:focus {
@@ -108,65 +152,9 @@ button:hover {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-
-.chatbot-container {
-  position: relative;
-  z-index: 1; /* Keep above the background */
-  color: rgb(255, 255, 255);
-  text-align: center;
-  padding: 20px;
-  font-family: "Arial", sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.chatbox {
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
-  padding: 20px;
-  display: inline-block;
-  margin-top: 20px;
-}
-
-/*new chat button*/
-.new-chat-btn-sidebar {
-  display: block;
-  width: 50%;
-  margin: 10px auto;
- 
-  padding: 10px;
-  background-color: #05010838;
-  color: white;
-  font-size: 16px;
-  text-align: center;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.new-chat-btn-sidebar:hover {
-  background-color: #050108ed;
-}
-
-.sidebar-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-}
-
-.history-list {
-  margin-top: 20px;
-  padding: 10px;
-  overflow-y: auto;
-  height: calc(100% - 100px); /* Adjust for button and header */
-}
-
