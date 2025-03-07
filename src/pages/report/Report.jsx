@@ -40,7 +40,7 @@ const Report = () => {
       <header className={styles.header}>
         <h1 className={styles.title}>Healthcare Chatbot Reports</h1>
       </header>
-      <Header />
+      {/* <Header /> */}
       <main className={styles.main}>
         <div className={styles.reportCard}>
           <h2 className={styles.cardTitle}>User Report Summary</h2>

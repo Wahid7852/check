@@ -47,7 +47,7 @@ const HealthStatistics = () => {
       <header style={styles.header}>
         <h1 style={styles.title}>Health Statistics</h1>
       </header>
-      <Header />
+      {/* <Header /> */}
       <main style={styles.main}>
         <div style={styles.statCard}>
           <h3>Heart Rate</h3>

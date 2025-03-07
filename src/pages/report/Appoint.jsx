@@ -89,7 +89,7 @@ const Appointments = () => {
       <header style={styles.header}>
         <h1 style={styles.title}>Your Appointments</h1>
       </header>
-      <Header />
+      {/* <Header /> */}
       <main style={styles.main}>
         {selectedAppointment ? (
           // 📌 View Details Interface

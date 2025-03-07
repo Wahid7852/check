@@ -34,7 +34,7 @@ const DownloadReport = () => {
       <header style={styles.header}>
         <h1 style={styles.title}>Download Your Health Report</h1>
       </header>
-      <Header />
+      {/* <Header /> */}
       <main style={styles.main}>
         <div style={styles.reportCard}>
           <h3>Report for February 2025</h3>
