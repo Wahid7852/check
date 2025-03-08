@@ -158,3 +158,15 @@ button:hover {
     transform: translateY(0);
   }
 }
+.music-button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.music-button:hover {
+  background-color: #ff3b3b;
+}
