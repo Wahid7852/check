@@ -1,7 +1,9 @@
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, send_from_directory, url_for
 from flask_cors import CORS
 import os
 import requests
+import random
+import re
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 app = Flask(__name__)
@@ -13,9 +15,29 @@ TOGETHER_API_URL = "https://api.together.xyz/v1/chat/completions"
 # Initialize sentiment analyzer
 analyzer = SentimentIntensityAnalyzer()
 
-# Define the correct path to MP3 files
+# Define path to music files
 MUSIC_FOLDER = "static/music"
-MUSIC_FILE = "song1.mp3"  # Ensure this file exists
+MUSIC_FILES = ["song1.mp3", "song2.mp3", "song3.mp3", "song4.mp3"]  
+
+# Expanded sadness keywords list
+sad_keywords = ["sad", "depressed", "unhappy", "down", "upset", "lonely", "miserable", "heartbroken", "melancholy", 
+                "feeling low", "very sad", "not okay", "not feeling good", "hopeless", "disappointed", "stressed out", "not ok"]
+
+def detect_sadness(user_input):
+    """
+    Detects sadness based on sentiment score and keyword matching.
+    """
+    cleaned_input = re.sub(r"[^a-zA-Z\s]", "", user_input.lower().strip())  # Remove punctuation
+    sentiment_score = analyzer.polarity_scores(cleaned_input)["compound"]
+
+    keyword_match = any(word in cleaned_input for word in sad_keywords)
+
+    print(f"DEBUG: User Input: {user_input}")
+    print(f"DEBUG: Cleaned Input: {cleaned_input}")
+    print(f"DEBUG: Sentiment Score: {sentiment_score}")
+    print(f"DEBUG: Keyword Match: {keyword_match}")
+
+    return sentiment_score < -0.5 or keyword_match  # Either sentiment is too negative or keyword is found
 
 @app.route('/process', methods=['POST'])
 def process_question():
@@ -25,16 +47,15 @@ def process_question():
             return jsonify({"error": "Missing 'question' field"}), 400
 
         user_input = data["question"]
+        is_sad = detect_sadness(user_input)
 
-        # Analyze sentiment
-        sentiment_score = analyzer.polarity_scores(user_input)["compound"]
-
-        # If sentiment is negative, recommend music
-        if sentiment_score < -0.5:
+        if is_sad:
+            selected_song = random.choice(MUSIC_FILES)  # Pick a random song
+            music_link = url_for('serve_music', filename=selected_song, _external=True)  # Generate full URL
             return jsonify({
                 "response": "I'm sensing that you're feeling down. Here's some relaxing music for you! 🎵",
                 "isSad": True,
-                "music": f"http://127.0.0.1:5000/music/{MUSIC_FILE}"
+                "music": music_link
             })
 
         # If sentiment is neutral/positive, process with AI model
