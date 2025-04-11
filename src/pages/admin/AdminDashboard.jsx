@@ -1,11 +1,21 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaTimes, FaBars } from "react-icons/fa";
-import "./AdminDashboard.css";
+import "./AdminDashboard.css"; // uses your dark theme CSS
+import { color } from "framer-motion";
+import { GiWhiteBook } from "react-icons/gi";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const menuItems = [
+    { label: "Manage Users", path: "/admin/manage-users", icon: "👥" },
+    { label: "View Reports", path: "/admin/reports", icon: "📊" },
+    { label: "System Settings", path: "/admin/settings", icon: "⚙️" },
+    { label: "Payment Management", path: "/admin/payment-management", icon: "💳" },
+    { label: "Logout", path: "/login", icon: "🚪", logout: true },
+  ];
 
   return (
     <div className="admin-dashboard">
@@ -24,22 +34,16 @@ const AdminDashboard = () => {
           </button>
         </div>
 
-        <ul>
-          <li onClick={() => navigate("/admin/manage-users")}>
-            <i className="icon-users"></i> Manage Users
-          </li>
-          <li onClick={() => navigate("/admin/reports")}>
-            <i className="icon-reports"></i> View Reports
-          </li>
-          <li onClick={() => navigate("/admin/settings")}>
-            <i className="icon-settings"></i> System Settings
-          </li>
-          <li onClick={() => navigate("/admin/payment-management")}>
-            <i className="icon-payments"></i> Payment Management
-          </li>
-          <li className="logout" onClick={() => navigate("/login")}>
-            <i className="icon-logout"></i> Logout
-          </li>
+        <ul className="sidebar-menu">
+          {menuItems.map((item, i) => (
+            <li
+              key={i}
+              className={item.logout ? "logout" : ""}
+              onClick={() => navigate(item.path)}
+            >
+              <span>{item.icon}</span> {item.label}
+            </li>
+          ))}
         </ul>
       </div>
 
@@ -48,26 +52,22 @@ const AdminDashboard = () => {
         <h1 className="admin-title">Admin Dashboard</h1>
         <p>Welcome, Admin! Manage users, view reports, and control system settings.</p>
 
-       {/* Admin Panel Options */}
-<div className="admin-options">
-  <button className="admin-btn" onClick={() => navigate("/admin/manage-users")}>
-    Manage Users
-  </button>
-  <button className="admin-btn" onClick={() => navigate("/admin/reports")}>
-    View Reports
-  </button>
-  <button className="admin-btn" onClick={() => navigate("/admin/settings")}>
-    System Settings
-  </button>
-  <button className="admin-btn" onClick={() => navigate("/admin/payment-management")}>
-    Payment Management
-  </button>
-</div>
+        <div className="admin-options">
+          {menuItems
+            .filter((item) => !item.logout)
+            .map((item, i) => (
+              <button
+                key={i}
+                className="admin-btn"
+                onClick={() => navigate(item.path)}
+              >
+                {item.label}
+              </button>
+            ))}
+        </div>
 
-
-        {/* Logout Button */}
         <button className="logout-btn" onClick={() => navigate("/login")}>
-          Logout
+          <div style={{ color: "white" }}>Logout</div>
         </button>
       </div>
     </div>
@@ -75,4 +75,3 @@ const AdminDashboard = () => {
 };
 
 export default AdminDashboard;
-

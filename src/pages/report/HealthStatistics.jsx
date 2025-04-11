@@ -24,7 +24,7 @@ const HealthStatistics = () => {
       marginTop: "20px",
     },
     statCard: {
-      background: "#0b2d4e",
+      background: "rgba(10, 192, 228, 0.8)",
       padding: "15px",
       margin: "10px auto",
       width: "80%",

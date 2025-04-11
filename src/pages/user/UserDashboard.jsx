@@ -5,29 +5,29 @@ import "./UserDashboard.css";
 
 const UserDashboard = () => {
     const navigate = useNavigate();
-    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     return (
         <div className="dashboard-container">
-            {/* Sidebar Toggle Button */}
             {!isSidebarOpen && (
                 <button className="sidebar-toggle open" onClick={() => setIsSidebarOpen(true)}>
                     <FaBars />
                 </button>
             )}
 
-            {/* Sidebar Navigation */}
             <aside className={`sidebar ${isSidebarOpen ? "open" : "closed"}`}>
                 <div className="sidebar-header">
                     <h2>Dashboard</h2>
-                    <button className="sidebar-toggle close" onClick={() => setIsSidebarOpen(false)}>
-                        <FaTimes />
-                    </button>
+                    {isSidebarOpen && (
+                        <button className="sidebar-toggle close" onClick={() => setIsSidebarOpen(false)}>
+                            <FaTimes />
+                        </button>
+                    )}
                 </div>
                 <ul>
                     <li onClick={() => navigate("/chatbot")}> <FaRobot /> Chatbot </li>
                     <li onClick={() => navigate("/appointments")}> <FaCalendarCheck /> Appointments </li>
-                    <li onClick={() => navigate("/reports")}> <FaFileAlt /> Reports </li>
+                    <li onClick={() => navigate("/report")}> <FaFileAlt /> Reports </li>
                     <li onClick={() => navigate("/")}> <FaHome /> Back to Homepage </li>
                 </ul>
             </aside>

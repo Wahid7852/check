@@ -53,7 +53,7 @@ const Appointments = () => {
       margin: "10px auto",
       width: "80%",
       borderRadius: "8px",
-      boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.1)",
+      boxShadow: "0px 2px 10px rgba(255, 255, 255, 0.1)",
     },
     button: {
       backgroundColor: "#007bff",
