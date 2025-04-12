@@ -73,6 +73,25 @@
   display: flex;
   flex-direction: column;
   max-height: 70vh;
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: transparent transparent;
+}
+/* WebKit browsers (Chrome, Safari) */
+.messages::-webkit-scrollbar {
+  width: 8px;
+}
+
+.messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.messages::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+
+.messages::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
 }
 
 .message {
@@ -157,4 +176,16 @@ button:hover {
     opacity: 1;
     transform: translateY(0);
   }
+}
+.music-button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.music-button:hover {
+  background-color: #ff3b3b;
 }
